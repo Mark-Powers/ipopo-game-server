@@ -36,12 +36,12 @@ table {
     border-collapse: collapse;
     border-style: hidden;
     align: center;
-    margin: auto auto;
-    margin-top; 100px;
+    margin: 100px auto 50px auto;
 }
 table td {
-    border: 1px solid black;
-    font: 20px;
+    border: 3px solid black;
+    font-size: 40px;
+    font-family: "Courier New", monospace;
     width: 50px;
     height: 50px;
 }

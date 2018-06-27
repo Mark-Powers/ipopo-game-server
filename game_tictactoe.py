@@ -19,15 +19,12 @@ class Game(object):
     def validate(self, context):
         for x in range(3):
             self.board.append(['_']*3)
-        print('TicTacToe Game has been loaded')
 
     @Invalidate
     def invalidate(self,context):
         self.board = None
 
     def setPos(self, r, c):
-
-        print("set pos was called")
         if(self.board[r][c] == '_'):
             self.board[r][c] = self.players[self.turn]
             self.turn += 1;
