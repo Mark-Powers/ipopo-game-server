@@ -1,10 +1,13 @@
 from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
     Requires, Validate, Invalidate, Unbind, Bind, Instantiate
 
-@ComponentFactory(name='simple-servlet-factory')
+from pelix.http import HTTP_SERVLET, HTTP_SERVLET_PATH
+from pelix.http.routing import RestDispatcher, HttpGet, HttpPost, HttpPut
+
+@ComponentFactory()
 @Instantiate('simple-servlet')
-@Requires("_srv", 'game_service')
-@Provides(specifications='pelix.http.servlet')
+@Requires("_srv", 'game_tictactoe_service')
+@Provides(HTTP_SERVLET)
 @Property('_path', 'pelix.http.path', "/tictactoe")
 class SimpleServletFactory(object):
   """
@@ -14,24 +17,14 @@ class SimpleServletFactory(object):
       self._path = None
 
   def bound_to(self, path, params):
-      """
-      Servlet bound to a path
-      """
       print('Bound to ' + path)
       return True
 
   def unbound_from(self, path, params):
-      """
-      Servlet unbound from a path
-      """
       print('Unbound from ' + path)
       return None
 
   def do_GET(self, request, response):
-      """
-      Handle a GET
-      """
-      print(self._srv.getBoard(0,0))
       content = """<html>
 <head>
 <title>Tic Tac Toe</title>
@@ -64,9 +57,5 @@ table td {
 </table>
 </body>
 </html>"""
-
-#        .format(clt_addr=request.get_client_address(),
-#                host=request.get_header('host', 0),
-#                keys=request.get_headers().keys())
 
       response.send_content(200, content)
