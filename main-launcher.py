@@ -17,6 +17,7 @@ def main():
     # Games here
     context.install_bundle('game_tictactoe').start()
     # Servlets here
+    context.install_bundle('servlet_index').start()
     context.install_bundle('servlet_tictactoe').start()
 
     context.install_bundle('pelix.http.basic').start()

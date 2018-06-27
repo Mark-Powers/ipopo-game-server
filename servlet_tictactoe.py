@@ -5,7 +5,7 @@ from pelix.http import HTTP_SERVLET, HTTP_SERVLET_PATH
 from pelix.http.routing import RestDispatcher, HttpGet, HttpPost, HttpPut
 
 @ComponentFactory()
-@Instantiate('simple-servlet')
+@Instantiate('tictactoe-servlet')
 @Requires("_srv", 'game_tictactoe_service')
 @Provides(HTTP_SERVLET)
 @Property('_path', 'pelix.http.path', "/tictactoe")
