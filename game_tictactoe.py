@@ -26,9 +26,9 @@ class Game(object):
     def invalidate(self,context):
         self.board = None
 
-    def setPos(self, r, c)
+    def setPos(self, r, c):
         if(self.board[r][c] == ' '):
-            self.board[r][c] = self.players[turn]
+            self.board[r][c] = self.players[self.turn]
             self.turn += 1;
             self.turn %= 2;
 
