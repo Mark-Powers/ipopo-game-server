@@ -39,15 +39,15 @@ class Game(object):
         for c in range(len(self.board[0])):
             if self.board[0][c] == self.board[1][c] \
                 and self.board[0][c] == self.board[2][c] \
-                and self.board[r][0] != '_':
+                and self.board[0][c] != '_':
                 return True
         if self.board[0][0] == self.board[1][1] \
            and self.board[0][0] == self.board[2][2] \
-           and self.board[r][0] != '_':
+           and self.board[0][0] != '_':
             return True
         if self.board[0][2] == self.board[1][1] \
            and self.board[0][2] == self.board[2][0] \
-           and self.board[r][0] != '_':
+           and self.board[0][2] != '_':
             return True
 
         return False
