@@ -13,6 +13,8 @@ def main():
     framework.start()
     context = framework.get_bundle_context()
 
+    # Games here
+    context.install_bundle('game_tictactoe').start()
     # Servlets here
     context.install_bundle('servlet_tictactoe').start()
 

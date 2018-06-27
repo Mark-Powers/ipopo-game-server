@@ -6,7 +6,7 @@ from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
 
 @ComponentFactory("game_tictactoe_factory")
 @Provides("game_service")
-@Insantiate("game_tictactoe_instance")
+@Instantiate("game_tictactoe_instance")
 
 class Game(object):
 

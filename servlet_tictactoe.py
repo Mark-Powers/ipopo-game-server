@@ -3,6 +3,7 @@ from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
 
 @ComponentFactory(name='simple-servlet-factory')
 @Instantiate('simple-servlet')
+@Requires("_srv", 'game_service')
 @Provides(specifications='pelix.http.servlet')
 @Property('_path', 'pelix.http.path', "/tictactoe")
 class SimpleServletFactory(object):
@@ -30,6 +31,7 @@ class SimpleServletFactory(object):
       """
       Handle a GET
       """
+      print(self._srv.getBoard(0,0))
       content = """<html>
 <head>
 <title>Tic Tac Toe</title>
@@ -37,31 +39,28 @@ class SimpleServletFactory(object):
 table {
     border-collapse: collapse;
     border-style: hidden;
+    align: center;
+    margin: auto auto;
+    margin-top; 100px;
 }
-
 table td {
     border: 1px solid black;
     font: 20px;
+    width: 50px;
+    height: 50px;
 }
 </style>
 </head>
 <body>
 <table>
-<tr>
-    <td>X</td>
-    <td>X</td>
-    <td> </td>
-</tr>
-<tr>
-    <td>O</td>
-    <td> </td>
-    <td> </td>
-</tr>
-<tr>
-    <td> </td>
-    <td>O</td>
-    <td>O</td>
-</tr>
+"""
+      for x in range(3):
+        content += "<tr>\n"
+        for y in range(3):
+          value = self._srv.getBoard(x, y)
+          content+= "<td>"+value+"</td>\n"
+        content += "</tr>\n"
+      content += """
 </table>
 </body>
 </html>"""
