@@ -21,7 +21,6 @@ class Game(object):
             self.board.append([' ']*3)
         print('TicTacToe Game has been loaded')
 
-
     @Invalidate
     def invalidate(self,context):
         self.board = None

@@ -8,7 +8,8 @@ def main():
     framework = pelix.framework.create_framework((
         "pelix.ipopo.core",
         "pelix.shell.core",
-        "pelix.shell.console"
+        "pelix.shell.console",
+        "pelix.shell.ipopo"
     ))
     framework.start()
     context = framework.get_bundle_context()
