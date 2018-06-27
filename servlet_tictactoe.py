@@ -1,9 +1,13 @@
 from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
     Requires, Validate, Invalidate, Unbind, Bind, Instantiate
 
-@ComponentFactory(name='simple-servlet-factory')
+from pelix.http import HTTP_SERVLET, HTTP_SERVLET_PATH
+from pelix.http.routing import RestDispatcher, HttpGet, HttpPost, HttpPut
+
+@ComponentFactory()
 @Instantiate('simple-servlet')
-@Provides(specifications='pelix.http.servlet')
+@Requires("_srv", 'game_tictactoe_service')
+@Provides(HTTP_SERVLET)
 @Property('_path', 'pelix.http.path', "/tictactoe")
 class SimpleServletFactory(object):
   """
@@ -13,23 +17,14 @@ class SimpleServletFactory(object):
       self._path = None
 
   def bound_to(self, path, params):
-      """
-      Servlet bound to a path
-      """
       print('Bound to ' + path)
       return True
 
   def unbound_from(self, path, params):
-      """
-      Servlet unbound from a path
-      """
       print('Unbound from ' + path)
       return None
 
   def do_GET(self, request, response):
-      """
-      Handle a GET
-      """
       content = """<html>
 <head>
 <title>Tic Tac Toe</title>
@@ -37,37 +32,30 @@ class SimpleServletFactory(object):
 table {
     border-collapse: collapse;
     border-style: hidden;
+    align: center;
+    margin: auto auto;
+    margin-top; 100px;
 }
-
 table td {
     border: 1px solid black;
     font: 20px;
+    width: 50px;
+    height: 50px;
 }
 </style>
 </head>
 <body>
 <table>
-<tr>
-    <td>X</td>
-    <td>X</td>
-    <td> </td>
-</tr>
-<tr>
-    <td>O</td>
-    <td> </td>
-    <td> </td>
-</tr>
-<tr>
-    <td> </td>
-    <td>O</td>
-    <td>O</td>
-</tr>
+"""
+      for x in range(3):
+        content += "<tr>\n"
+        for y in range(3):
+          value = self._srv.getBoard(x, y)
+          content+= "<td>"+value+"</td>\n"
+        content += "</tr>\n"
+      content += """
 </table>
 </body>
 </html>"""
-
-#        .format(clt_addr=request.get_client_address(),
-#                host=request.get_header('host', 0),
-#                keys=request.get_headers().keys())
 
       response.send_content(200, content)
