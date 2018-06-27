@@ -25,7 +25,7 @@ class Game(object):
     def invalidate(self,context):
         self.board = None
 
-    def setPos(self, r, c)
+    def setPos(self, r, c):
         if(self.board[r][c] == ' '):
             self.board[r][c] = self.players[turn]
             self.turn += 1;
@@ -38,7 +38,7 @@ class Game(object):
                 return True
         for c in range(len(self.board[0])):
             if self.board[0][c] == self.board[1][c] \
-                and self.board[0][0] == self.board[2][c]:
+                and self.board[0][c] == self.board[2][c]:
                 return True
         if self.board[0][0] == self.board[1][1] \
            and self.board[0][0] == self.board[2][2]:
@@ -51,6 +51,8 @@ class Game(object):
 
     def getPos(self, r, c):
         return self.board[r][c];
+
+
 
 
 
