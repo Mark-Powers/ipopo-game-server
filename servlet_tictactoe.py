@@ -29,6 +29,7 @@ class TicTacToeServletFactory(RestDispatcher):
   def show_board(self, request, response):
       content = """<html>
 <head>
+<meta charset="UTF-8"> 
 <title>Tic Tac Toe</title>
 <style>
 table {
