@@ -15,10 +15,10 @@ def main():
     context = framework.get_bundle_context()
 
     # Games here
-    context.install_bundle('game_tictactoe').start()
+    context.install_bundle('game_tictactoe', './games/').start()
     # Servlets here
     context.install_bundle('servlet_index').start()
-    context.install_bundle('servlet_tictactoe').start()
+    context.install_bundle('servlet_tictactoe', './games/').start()
 
     context.install_bundle('pelix.http.basic').start()
     with use_ipopo(context) as ipopo:
