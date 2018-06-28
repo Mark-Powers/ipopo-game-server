@@ -66,7 +66,7 @@ class Game(object):
         return False
 
     def getWinner(self):
-        return winner
+        return self.winner
 
 
     def getPos(self, r, c):
