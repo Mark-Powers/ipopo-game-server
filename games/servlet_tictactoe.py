@@ -34,7 +34,9 @@ class TicTacToeServletFactory(RestDispatcher):
 
     @HttpGet("/")
     def show_board(self, request, response):
+        print(request.get_headers())
         cookie = request.get_header("Cookie")
+        print(cookie)
         content = """<html>
 <head>
 <meta charset="UTF-8"> 
@@ -84,5 +86,4 @@ table td {
             content += '<a href="/tictactoe/reset">reset<a/>\n'
         content += """</body>
 </html>"""
-
         response.send_content(200, content)
